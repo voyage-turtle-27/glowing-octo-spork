@@ -8,7 +8,7 @@ body{
   width: 250px;
   margin: 0px auto;
   position: relative;
-  top: 150px;
+  top: 250px;
 }
 .greet span{
   font-size: 22px;
@@ -20,10 +20,13 @@ body{
   color: white;
 }
 .clock{
-  width: 250px;
+  width: 350px;
   margin: 0px auto;
   text-align: center;
   font-size: 60px;
   font-weight: bold;
   color: white;
+}
+#time{
+  width: 100%;
 }

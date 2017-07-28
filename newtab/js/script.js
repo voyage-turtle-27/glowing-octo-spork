@@ -2,6 +2,11 @@ $(document).ready(function(){
   console.log("ready");
   var today = new Date();
   timer();
+  var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var months=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  //var dateStr = days[today.getDay()];
+  var dateStr = today.toDateString();
+  $('#date').html(dateStr);
 });
 function timer(){
   console.log("timer fired.");
