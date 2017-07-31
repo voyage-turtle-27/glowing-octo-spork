@@ -4,19 +4,33 @@ $(document).ready(function(){
   $.getJSON("https://api.unsplash.com/photos/random/?client_id=" + api, function(data) {
     var imageUrl = data.urls.regular;
     console.log(imageUrl);
-    $('#background').css('background-image', 'url(' + imageUrl + ')').fadeTo("slow", 1);
+    $('#background').css('background', 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + imageUrl + ')').fadeTo("slow", 1);
+    $('#background').css('background-size','cover');
   })
-    .done(function() {
-      console.log('all done');
-    });
-  
+  .done(function() {
+    console.log('all done');
+  });
+  // $('#background').css('background', 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://source.unsplash.com/category/nature/daily")').fadeTo("slow", 1);
+  // $('#background').css('background-size','cover');
+
   var today = new Date();
   timer();
-  var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  var months=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  //var dateStr = days[today.getDay()];
   var dateStr = today.toDateString();
   $('#date').html(dateStr);
+  //adding quotes
+  $.ajax({
+    url:'https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous',
+    type: 'POST',
+		data: {},
+		dataType: 'json',
+    success: function(res){
+      $('#quote').html("<div>"+res.quote+" - "+res.author+"</div>");
+    },
+    beforeSend: function(xhr) {
+		  xhr.setRequestHeader("X-Mashape-Authorization","Aol6HZ3fJJmsh9fxq2gR2J2UbTEjp1cEWmkjsnwhTDLhdkAlFU");
+		}
+  });
+  //quotes ended
 });
 function timer(){
   console.log("timer fired.");

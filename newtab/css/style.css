@@ -17,7 +17,7 @@ body {
   color: white;
 }
 .clock{
-  width: 350px;
+  width: 500px;
   margin: 0px auto;
   text-align: center;
   font-size: 60px;
@@ -40,4 +40,18 @@ body {
 
 #time{
   width: 100%;
+}
+#date{
+  display: block;
+  width: 500px;
+}
+.quote{
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 10px;
+  left: 100px;
+  right: 100px;
 }
