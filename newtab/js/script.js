@@ -1,5 +1,15 @@
 $(document).ready(function(){
   console.log("ready");
+  var api = '0a8d702c02c016cd97c093c6d37faa447c9d60f1515761fdd6adff8077e4261d';
+  $.getJSON("https://api.unsplash.com/photos/random/?client_id=" + api, function(data) {
+    var imageUrl = data.urls.regular;
+    console.log(imageUrl);
+    $('#background').css('background-image', 'url(' + imageUrl + ')').fadeTo("slow", 1);
+  })
+    .done(function() {
+      console.log('all done');
+    });
+  
   var today = new Date();
   timer();
   var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
