@@ -1,6 +1,42 @@
+/*==================================================================*
+ *  BASE LAYOUT                                                *
+ *==================================================================*/
+
 body {
-  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
 }
+
+a {
+  color: inherit;
+}
+/*==================================================================*
+ *  STRUCTURE LAYOUT                                                *
+ *==================================================================*/
+.absolute {
+  position: absolute;
+}
+
+.top {
+  top: 5%;
+}
+
+.bottom {
+  bottom: 5%;
+}
+
+.right {
+  right: 2%;
+  text-align: right;
+}
+
+.left {
+  left: 2%;
+  text-align: left;
+}
+/*==================================================================*
+ *  CONTENT LAYOUT                                                  *
+ *==================================================================*/
 .greet{
   width: 250px;
   margin: 0px auto;
@@ -15,19 +51,10 @@ body {
   color: white;
 }
 .clock{
-  width: 500px;
   margin: 0px auto;
-  text-align: center;
-  font-size: 60px;
+  text-align: right;
+  font-size: 80px;
   color: white;
-}
-
-#date {
-  font-size: 15px;
-}
-
-.greet, .clock{
-  font-family: 'Oxygen', sans-serif;
 }
 
 #background {
@@ -48,15 +75,29 @@ body {
 }
 #date{
   display: block;
-  width: 500px;
+  font-size: 0.25em;
+  padding-right: 5px;
+}
+
+#photo{
+  font-size: .15em;
+  padding-top: 100px;
 }
 .quote{
-  color: white;
-  font-size: 17px;
-  text-align: center;
-  text-transform: uppercase;
-  position: absolute;
+  max-width: 500px;
+  font-size: 20px;
+  /* position: absolute;
   bottom: 10px;
   left: 100px;
-  right: 100px;
+  right: 100px; */
+}
+
+.quote-text{
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.quote-author{
+  text-align: left;
+  font-size: 0.8em;
 }
