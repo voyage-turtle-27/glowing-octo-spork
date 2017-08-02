@@ -1,5 +1,10 @@
 $(window).on("load",function(){
   $('#photo').hide();
+  var block = false;
+
+  /*****************************************************************************
+   * GET RANDOM PHOTO REQUEST
+   *****************************************************************************/
   var api = '0a8d702c02c016cd97c093c6d37faa447c9d60f1515761fdd6adff8077e4261d';
   var image;
   $.ajax({
@@ -23,36 +28,10 @@ $(window).on("load",function(){
     }).fadeTo(2000, 1);
     $('#credit').html('Photo by <a href="'+image.user.links.html+'">'+image.user.name+'</a> / <a href="https://unsplash.com/">Unsplash</a></div>')
   });
-  // $('#background').css('background', 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://source.unsplash.com/category/nature/daily")').fadeTo("slow", 1);
-  // $('#background').css('background-size','cover');
 
-  var block = false;
-  $(".clock").mouseenter(function(){
-    if (!block){
-      block = true;
-      $("#date, #time").fadeOut(function() {      
-        $("#photo").fadeIn(function(){
-          block = false;
-        });
-      });
-     }
-  });
-  $(".clock").mouseleave(function(){
-    if (!block){
-      block = true;
-      $("#photo").fadeOut(400, function() {      
-        $("#date, #time").fadeIn(function(){
-          block = false;
-        });
-      });
-    }
-  });
-
-  var today = new Date();
-  timer();
-  var dateStr = today.toDateString();
-  $('#date').html(dateStr);
-  //adding quotes
+  /*****************************************************************************
+   * GET RANDOM QUOTE REQUEST
+   *****************************************************************************/
   $.ajax({
     url:'https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous',
     type: 'POST',
@@ -66,8 +45,39 @@ $(window).on("load",function(){
 		  xhr.setRequestHeader("X-Mashape-Authorization","Aol6HZ3fJJmsh9fxq2gR2J2UbTEjp1cEWmkjsnwhTDLhdkAlFU");
 		}
   });
-  //quotes ended
+
+  /*****************************************************************************
+   * CLOCK/PHOTO CREDITS TRANSITION EFFECT
+   *****************************************************************************/
+  $(".clock").mouseenter(function(){
+    if (!block){
+      block = true;
+      $("#date, #time").fadeOut(function() {      
+        $("#photo").fadeIn(function(){
+          block = false;
+        });
+      });
+     }
+  });
+  $(".clock").mouseleave(function(){
+    if (!block){
+      block = true;
+      $("#photo").fadeOut(function() {      
+        $("#date, #time").fadeIn(function(){
+          block = false;
+        });
+      });
+    }
+  }); // 
+
+  var today = new Date();
+  timer();
+  var dateStr = today.toDateString();
+  $('#date').html(dateStr);
 });
+/*****************************************************************************
+ * ^^^^^^^^^^^^^^^^ WINDOWS LOAD FUNCTION ENDS HERE ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *****************************************************************************/
 
 function timer(){
   var today = new Date();

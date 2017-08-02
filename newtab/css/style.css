@@ -76,15 +76,15 @@ a {
 #date{
   display: block;
   font-size: 0.25em;
-  padding-right: 5px;
 }
 
 #photo{
   font-size: .15em;
   padding-top: 100px;
+  padding-bottom: 5px;
 }
 .quote{
-  max-width: 500px;
+  max-width: 700px;
   font-size: 20px;
   /* position: absolute;
   bottom: 10px;
