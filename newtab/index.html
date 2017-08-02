@@ -4,19 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
   <title>Chrome extension</title>
 </head>
 <body>
-  <div id="background"></div>
-  <div class="greet">
-    <span>Hello world!</span>
+  <div id="background">
+    <div class="absolute bottom right">
+      <div class="clock">
+        <div id="time"></div>
+        <div id="date"></div>
+        <div id="photo">
+          <div id="credit"><a href=""> </a></div>
+          <div id="location"></div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom left">
+       <div class="quote quote-text" id="quote-text"></div> 
+       <div class="quote quote-author" id="quote-author"></div> 
+    </div>
   </div>
-  <div class="clock">
-    <span id="time"></span>
-    <span id="date"></span>
-  </div>
-  <div class="quote" id="quote"></div>
+
   <script type="text/javascript" src="./js/jquery-3.2.1.min.js">
   </script>
   <script type="text/javascript" src="./js/script.js">
