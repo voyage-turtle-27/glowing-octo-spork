@@ -1,7 +1,12 @@
 $(window).on("load",function(){
+  $(".button-collapse").sideNav({
+    menuWidth: 300,
+    edge: 'right'
+  });
+  $('#add-task').click(saveTask);
   $('#photo').hide();
   var block = false;
-
+  getLocation();
   /*****************************************************************************
    * GET RANDOM PHOTO REQUEST
    *****************************************************************************/
@@ -13,7 +18,7 @@ $(window).on("load",function(){
     headers: {
       'authorization': "Client-ID " + api,
       'orientation': 'landscape',
-      'query': 'nature'
+      'query': 'landscape'
     },
 		data: {},
 		dataType: 'json',
@@ -23,9 +28,9 @@ $(window).on("load",function(){
   })
   .done(function() {
     $('#background').css({
-      background: 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + image.urls.regular + ')',
+      background: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' + image.urls.regular + ')',
       backgroundSize:'cover'
-    }).fadeTo(2000, 1);
+    }).fadeTo(1500, 1);
     $('#credit').html('Photo by <a href="'+image.user.links.html+'">'+image.user.name+'</a> / <a href="https://unsplash.com/">Unsplash</a></div>')
   });
 
@@ -68,7 +73,7 @@ $(window).on("load",function(){
         });
       });
     }
-  }); // 
+  }); 
 
   var today = new Date();
   timer();
@@ -90,4 +95,19 @@ function timer(){
   timeDom.html(time);
   var offset = (60 - today.getSeconds());
   setTimeout(timer, offset*500);
+}
+
+function saveTask() {
+  //get the value from input
+  var value = $('#task').val();
+  chrome.storage.local.get('tasks', function(result){
+    console.log(result);
+  });
+  
+}
+
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(function(position){
+      console.log("test");
+    })
 }

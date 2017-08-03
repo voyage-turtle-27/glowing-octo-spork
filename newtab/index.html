@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
   <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
   <link rel="stylesheet" href="./css/style.css">
   <title>Chrome extension</title>
 </head>
@@ -27,7 +29,23 @@
     </div>
   </div>
 
+  <ul id="slide-out" class="side-nav">
+    <li>   
+      <div class="search-wrapper card">
+        <input id="task" type="text" placeholder="Add Task">
+        <a href="#" id="add-task"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      </div>
+      
+    </li>
+    <li>Test 2</li>
+    <li>Test 3</li>
+    <li>Test 4</li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="absolute top right button-collapse"><i class="fa fa-tasks fa-3x" aria-hidden="true" id="badge-position"></i><span id="badge">4</span></a>
+        
   <script type="text/javascript" src="./js/jquery-3.2.1.min.js">
+  </script>
+  <script type="text/javascript" src="./js/materialize.min.js">
   </script>
   <script type="text/javascript" src="./js/script.js">
   </script>
