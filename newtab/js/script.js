@@ -21,16 +21,14 @@ $(window).on("load",function(){
       background: 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + image.urls.regular + ')',
       backgroundSize:'cover'
     }).fadeTo(2000, 1);
-    $('#credit').html('Photo by <a href="'+image.user.links.html+'">'+image.user.name+'</a> / <a href="https://unsplash.com/">Unsplash</a></div>')
+    $('#credit').html('Photo by <a href="'+image.user.links.html+'">'+image.user.name+'</a> / <a href="https://unsplash.com/">Unsplash</a></div>');
   });
-  // $('#background').css('background', 'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://source.unsplash.com/category/nature/daily")').fadeTo("slow", 1);
-  // $('#background').css('background-size','cover');
 
   var block = false;
   $(".clock").mouseenter(function(){
     if (!block){
       block = true;
-      $("#date, #time").fadeOut(function() {      
+      $("#date, #time").fadeOut(function() {
         $("#photo").fadeIn(function(){
           block = false;
         });
@@ -40,7 +38,7 @@ $(window).on("load",function(){
   $(".clock").mouseleave(function(){
     if (!block){
       block = true;
-      $("#photo").fadeOut(400, function() {      
+      $("#photo").fadeOut(400, function() {
         $("#date, #time").fadeIn(function(){
           block = false;
         });
@@ -67,6 +65,36 @@ $(window).on("load",function(){
 		}
   });
   //quotes ended
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      console.log(pos);
+      $.ajax({
+          url: 'https://meetup-chrome.glitch.me/getMeetups',
+          type: "POST",
+          data:pos,
+          success: function(res){
+            console.log(res);
+            res = res.data;
+            var html="<ul>";
+            res.forEach(function(event){
+              var date = new Date(event.time + event.utc_offset);
+              html+="<li><b>Group</b> - <a href='https://www.meetup.com/"+event.group.urlname+"'>"+event.group.name+"</a></br>";
+              html+="<b>Event</b> - <a href='"+event.link+"'>"+event.name+"</a></br>";
+              html+="<b>Rsvp Count</b> - "+event.yes_rsvp_count+"</br>";
+              html+="<b>Date</b> - "+date.toDateString();
+              html+="</li>";
+            });
+            html+="</ul>";
+            $(".meetups").html(html);
+          }
+        });
+    });
+  }
 });
 
 function timer(){

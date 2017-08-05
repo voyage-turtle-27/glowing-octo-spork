@@ -86,10 +86,6 @@ a {
 .quote{
   max-width: 500px;
   font-size: 20px;
-  /* position: absolute;
-  bottom: 10px;
-  left: 100px;
-  right: 100px; */
 }
 
 .quote-text{
@@ -100,4 +96,35 @@ a {
 .quote-author{
   text-align: left;
   font-size: 0.8em;
+}
+/* css for meetups */
+.meetups{
+  position: absolute;
+  top: 10px;
+  /*border: 1px solid red;*/
+  /*background-color: black;*/
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+}
+.meetups ul{
+  list-style-type: none;
+  padding: 0px;
+  padding-left: 10px;
+}
+.meetups ul li{
+  width: 350px;
+  margin: 0px auto;
+  color: white;
+  font-size: 17px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  padding: 5px;
+}
+.meetups ul li:hover{
+  background-color: white;
+  color: black;
+}
+.meetups ul li a{
+  text-decoration: underline;
+  color: inherit;
 }
