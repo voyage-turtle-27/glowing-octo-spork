@@ -100,7 +100,7 @@ a {
 /* css for meetups */
 .meetups{
   position: absolute;
-  top: 10px;
+  top: 50px;
   /*border: 1px solid red;*/
   /*background-color: black;*/
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
@@ -109,6 +109,9 @@ a {
   list-style-type: none;
   padding: 0px;
   padding-left: 10px;
+  padding-right: 10px;
+  height: 450px;
+  overflow: auto;
 }
 .meetups ul li{
   width: 350px;
@@ -127,4 +130,21 @@ a {
 .meetups ul li a{
   text-decoration: underline;
   color: inherit;
+}
+#meetupSearch{
+  width: 360px;
+  position: relative;
+  top: 5px;
+  left: 15px;
+}
+#meetupSearch input{
+  width: 350px;
+  margin: 0px auto;
+  padding: 10px 5px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.3);
+  border-bottom: 1px solid;
+  font-size: 1.5em;
+  color: white;
 }

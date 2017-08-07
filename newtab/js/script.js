@@ -65,12 +65,26 @@ $(window).on("load",function(){
 		}
   });
   //quotes ended
+  var q = 'Javascript';
+  showMeetups(q);
+});
+$(document).ready(function(){
+  $('#meetupSearch').submit(function(){
+    // alert("submited");
+    var q = $('#meetupSearch input').val();
+    showMeetups(q);
+    return false;
+  });
+});
+//Search for meetups
+function showMeetups(q){
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lng: position.coords.longitude,
+        q: q
       };
       console.log(pos);
       $.ajax({
@@ -95,7 +109,7 @@ $(window).on("load",function(){
         });
     });
   }
-});
+}
 
 function timer(){
   var today = new Date();
