@@ -3,10 +3,24 @@ $(window).on("load",function(){
     menuWidth: 300,
     edge: 'right'
   });
+
+  // initialize task list
+  chrome.storage.local.get(function (result){
+    getTasks(result);
+  });
+
+  $('#task').on('keydown',function(e){
+    if(e.which == '13'){
+      saveTask();
+      $('#task').val("");
+    } 
+  });
   $('#add-task').click(saveTask);
+  $('#reset').click(clearTask);
+  
   $('#photo').hide();
   var block = false;
-  getLocation();
+
   /*****************************************************************************
    * GET RANDOM PHOTO REQUEST
    *****************************************************************************/
@@ -30,8 +44,10 @@ $(window).on("load",function(){
     $('#background').css({
       background: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' + image.urls.regular + ')',
       backgroundSize:'cover'
-    }).fadeTo(1500, 1);
-    $('#credit').html('Photo by <a href="'+image.user.links.html+'">'+image.user.name+'</a> / <a href="https://unsplash.com/">Unsplash</a></div>')
+    }).fadeTo(1500, 1, function(){
+      $('#badge').show('slow');
+      $('#credit').html('Photo by <a href="'+image.user.links.html+'">'+image.user.name+'</a> / <a href="https://unsplash.com/">Unsplash</a></div>')
+    });
   });
 
   /*****************************************************************************
@@ -81,7 +97,7 @@ $(window).on("load",function(){
   $('#date').html(dateStr);
 });
 /*****************************************************************************
- * ^^^^^^^^^^^^^^^^ WINDOWS LOAD FUNCTION ENDS HERE ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * ^^^^^^^^^^^^^^^^ WINDOW LOAD FUNCTION ENDS HERE ^^^^^^^^^^^^^^^^^^^^^^^^^^
  *****************************************************************************/
 
 function timer(){
@@ -100,14 +116,35 @@ function timer(){
 function saveTask() {
   //get the value from input
   var value = $('#task').val();
-  chrome.storage.local.get('tasks', function(result){
-    console.log(result);
-  });
-  
+  var array = [];
+  if (!value) {
+    console.log("Missing Parameter")
+  } else {
+    chrome.storage.local.get(function(result){
+      if (result.tasks) array = result.tasks;
+      array.push(value);
+      chrome.storage.local.set({tasks: array}, function (){
+        chrome.storage.local.get(function (result){
+          getTasks(result);
+        });
+      });
+    });
+  }
 }
 
-function getLocation() {
-    navigator.geolocation.getCurrentPosition(function(position){
-      console.log("test");
-    })
+function getTasks(result) {
+  if (result.tasks) {
+    var list = "";
+    array = result.tasks;
+    for (i = 0; i < array.length; i++){
+      list +="<li class='list' id=" + i +">"+array[i]+"<span class='right delete'><a href='#'><i class='fa fa-times' aria-hidden='true'></i></a></span></li>";
+    }
+  }
+  $("#task-list").html(list);
+}
+
+
+function clearTask() {
+  chrome.storage.local.clear();
+  $("#task-list").html("");
 }

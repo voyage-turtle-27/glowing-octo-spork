@@ -42,7 +42,7 @@ a {
 }
 
 #slide-out {
-  padding: 15px;
+  padding: 0;
 }
 
 #slide-out li {
@@ -137,6 +137,7 @@ a {
 }
 
 #badge {
+  display: none;
   position:absolute;
   top:-12px;
   right:-12px;
@@ -148,4 +149,14 @@ a {
   font-style: bold;
   line-height:25px;
   border-radius:50%;
+}
+
+.wrapper {
+  height: 95%;
+  padding: 15px;
+  position: relative;
+}
+
+.list {
+  position: relative;
 }

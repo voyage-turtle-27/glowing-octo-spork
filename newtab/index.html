@@ -30,17 +30,27 @@
   </div>
 
   <ul id="slide-out" class="side-nav">
+    <div class="wrapper">
     <li>   
       <div class="search-wrapper card">
         <input id="task" type="text" placeholder="Add Task">
-        <a href="#" id="add-task"><i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a class='dropdown-button' href='#' data-activates='option-task'><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
       </div>
-      
     </li>
-    <li>Test 2</li>
-    <li>Test 3</li>
-    <li>Test 4</li>
+    <div id="task-list">
+    </div>
+    <li class="absolute bottom right"><a href="#" id="cancel">Cancel</a></li>
+
+    </div>
   </ul>
+
+    <!-- Dropdown Structure -->
+  <ul id='option-task' class='dropdown-content'>
+    <li><a href="#!" id="delete">Delete</a></li>
+    <li><a href="#!"id="reset">Reset</a></li>
+  </ul>
+        
+
   <a href="#" data-activates="slide-out" class="absolute top right button-collapse"><i class="fa fa-tasks fa-3x" aria-hidden="true" id="badge-position"></i><span id="badge">4</span></a>
         
   <script type="text/javascript" src="./js/jquery-3.2.1.min.js">
